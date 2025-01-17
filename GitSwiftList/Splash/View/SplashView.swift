@@ -13,7 +13,7 @@ final class SplashView: UIView {
     
     private enum Constants {
         static let screenWidth = UIScreen.main.bounds.size.width
-        static let screenHeight = UIScreen.main.bounds.size.width
+        static let screenHeight = UIScreen.main.bounds.size.height
         static let animationSize = 160
         static let animationFrameX = Int(screenWidth)/2 - animationSize/2
         static let animationFrameY = Int(screenHeight)/2 - animationSize/2
