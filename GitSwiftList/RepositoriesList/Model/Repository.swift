@@ -4,6 +4,9 @@
 //
 //  Created by Ana Carolina Camargo Borba on 17/01/25.
 //
+struct RepositoriesResponse: Codable {
+    let items: [Repository]
+}
 
 struct Repository: Codable {
     let id: Int

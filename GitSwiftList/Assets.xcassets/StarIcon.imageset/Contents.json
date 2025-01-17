@@ -1,0 +1,15 @@
+{
+  "images" : [
+    {
+      "filename" : "3844428_famous_favorite_featured_star_super_icon.png",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  },
+  "properties" : {
+    "preserves-vector-representation" : true
+  }
+}

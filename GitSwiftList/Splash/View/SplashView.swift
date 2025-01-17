@@ -41,6 +41,7 @@ final class SplashView: UIView {
         let fontSize: CGFloat = 20
         label.font = UIFont.systemFont(ofSize: fontSize, weight: .heavy)
         label.translatesAutoresizingMaskIntoConstraints = false
+        
         return label
     }()
     
@@ -50,6 +51,7 @@ final class SplashView: UIView {
         let fontSize: CGFloat = 16
         label.font = UIFont.systemFont(ofSize: fontSize, weight: .light)
         label.translatesAutoresizingMaskIntoConstraints = false
+        
         return label
     }()
     

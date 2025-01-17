@@ -32,6 +32,11 @@ final class RepositoriesView: UIView {
    required init?(coder: NSCoder) {
         nil
     }
+    
+    public func bindView(repositories: [Repository]) {
+        self.repositories = repositories
+        tableView.reloadData()
+    }
 }
 
 extension RepositoriesView: DSViewCodeProtocol {
@@ -54,6 +59,7 @@ extension RepositoriesView: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier:NSStringFromClass(RepositoryCell.self), for: indexPath) as! RepositoryCell
+        cell.setUpCell(repository: repositories[indexPath.row])
         return cell
     }
 }
