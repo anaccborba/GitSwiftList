@@ -11,7 +11,7 @@ import UIKit
 
 final class SplashView: UIView {
     
-    enum Constants {
+    private enum Constants {
         static let screenWidth = UIScreen.main.bounds.size.width
         static let screenHeight = UIScreen.main.bounds.size.width
         static let animationSize = 160
@@ -22,8 +22,6 @@ final class SplashView: UIView {
         
         static let splashTitle = "Git Swift List"
         static let splashDescription = "Seus repositórios Swift em um tap"
-        
-        static let splashYellow = UIColor(red: 255/255, green: 255/255, blue: 153/255, alpha: 1.0)
     }
     
     private lazy var animationView: LottieAnimationView = {
@@ -57,7 +55,7 @@ final class SplashView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = Constants.splashYellow
+        backgroundColor = .lightYellow
         setUpViewCode()
         animationView.play()
     }
