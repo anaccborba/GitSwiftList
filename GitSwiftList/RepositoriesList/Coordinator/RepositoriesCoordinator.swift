@@ -15,7 +15,13 @@ final class RepositoriesCoordinator: Coordinator {
     }
     
     func start() {
-        let viewController = RepositoriesViewController()
+        let viewController = RepositoriesViewController(coordinator: self)
         navigationController.pushViewController(viewController, animated: false)
+    }
+    
+    func didFinish(repository: Repository) {
+        let pullRequestsCoordinator = PullRequestsCoordinator(navigationController: self.navigationController)
+        pullRequestsCoordinator.repository = repository
+        pullRequestsCoordinator.start()
     }
 }

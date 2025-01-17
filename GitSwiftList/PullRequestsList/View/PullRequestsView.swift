@@ -1,5 +1,5 @@
 //
-//  RepositoriesView.swift
+//  PullRequestsView.swift
 //  GitSwiftList
 //
 //  Created by Ana Carolina Camargo Borba on 17/01/25.
@@ -8,10 +8,10 @@
 import UIKit
 import SnapKit
 
-final class RepositoriesView: UIView {
+final class PullRequestsView: UIView {
     
-    private var repositories: [Repository] = []
-    public var repositoryCellTap: ((Repository) -> Void)?
+    private var pullRequests: [PullRequest] = []
+    public var pullRequestCellTap: ((PullRequest) -> Void)?
     
     private lazy var tableView: UITableView = {
         let tableView = UITableView()
@@ -20,7 +20,7 @@ final class RepositoriesView: UIView {
         
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.register(RepositoryCell.self, forCellReuseIdentifier: NSStringFromClass(RepositoryCell.self))
+        tableView.register(PullRequestCell.self, forCellReuseIdentifier: NSStringFromClass(PullRequestCell.self))
         
         return tableView
     }()
@@ -34,13 +34,13 @@ final class RepositoriesView: UIView {
         nil
     }
     
-    public func bindView(repositories: [Repository]) {
-        self.repositories = repositories
+    public func bindView(pullRequests: [PullRequest]) {
+        self.pullRequests = pullRequests
         tableView.reloadData()
     }
 }
 
-extension RepositoriesView: DSViewCodeProtocol {
+extension PullRequestsView: DSViewCodeProtocol {
     func setUpHierarchy() {
         addSubview(tableView)
     }
@@ -52,20 +52,21 @@ extension RepositoriesView: DSViewCodeProtocol {
     }
 }
 
-extension RepositoriesView: UITableViewDataSource, UITableViewDelegate {
+extension PullRequestsView: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        repositories.count
+        pullRequests.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        guard let cell = tableView.dequeueReusableCell(withIdentifier:NSStringFromClass(RepositoryCell.self), for: indexPath) as? RepositoryCell else { return UITableViewCell() }
-        cell.setUpCell(repository: repositories[indexPath.row])
+        guard let cell = tableView.dequeueReusableCell(withIdentifier:NSStringFromClass(PullRequestCell.self), for: indexPath) as? PullRequestCell else { return UITableViewCell() }
+        cell.setUpCell(pullRequest: pullRequests[indexPath.row])
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        repositoryCellTap?(repositories[indexPath.row])
+        pullRequestCellTap?(pullRequests[indexPath.row])
     }
 }
+
 

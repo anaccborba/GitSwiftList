@@ -1,5 +1,5 @@
 //
-//  RepositoriesViewController.swift
+//  PullRequestsViewController.swift
 //  GitSwiftList
 //
 //  Created by Ana Carolina Camargo Borba on 17/01/25.
@@ -8,11 +8,11 @@
 import Foundation
 import UIKit
 
-final class RepositoriesViewController: UIViewController {
+final class PullRequestsViewController: UIViewController {
     
-    private let coordinator: RepositoriesCoordinator
-    private let typedView = RepositoriesView()
-    private let viewModel = RepositoriesViewModel()
+    private let typedView = PullRequestsView()
+    private let viewModel: PullRequestsViewModel
+    private let coordinator: PullRequestsCoordinator
     
     private let errorView = DSErrorView()
     private var loadingView: DSLoadingView?
@@ -22,38 +22,37 @@ final class RepositoriesViewController: UIViewController {
         view = typedView
     }
     
-    init(coordinator: RepositoriesCoordinator) {
+    init(viewModel: PullRequestsViewModel, coordinator: PullRequestsCoordinator) {
+        self.viewModel = viewModel
         self.coordinator = coordinator
         super.init(nibName: nil, bundle: nil)
     }
     
     required init?(coder: NSCoder) {
-        return nil
+        nil
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.setHidesBackButton(true, animated: true)
-        self.title = "Repositórios Swift"
+        self.title = "Pull Requests"
         
-        showLoading()
-        viewModel.fetchRepositories()
+        viewModel.fetchPullRequests()
         configureTypedViewActions()
         configureViewModelActions()
         configureErrorViewActions()
     }
     
     override func viewWillAppear(_ animated: Bool) {
-//        showLoading()
+        showLoading()
     }
     
     private func configureViewModelActions() {
-        viewModel.reloadRepositories = { [weak self] in
+        viewModel.reloadPullRequests = { [weak self] in
             DispatchQueue.main.async {
                 self?.hideLoading()
                 self?.hideError()
-                if let repositories = self?.viewModel.repositories {
-                    self?.typedView.bindView(repositories: repositories)
+                if let pullRequests = self?.viewModel.pullRequests {
+                    self?.typedView.bindView(pullRequests: pullRequests)
                 }
             }
         }
@@ -68,13 +67,13 @@ final class RepositoriesViewController: UIViewController {
     
     private func configureErrorViewActions() {
         errorView.tryAgainTap = { [weak self] in
-            self?.viewModel.fetchRepositories()
+            self?.viewModel.fetchPullRequests()
         }
     }
     
     private func configureTypedViewActions() {
-        typedView.repositoryCellTap = { [weak self] repository in
-            self?.coordinator.didFinish(repository: repository)
+        typedView.pullRequestCellTap = { [weak self] pullRequest in
+            self?.coordinator.didFinish(url: pullRequest.url)
         }
     }
     
@@ -100,3 +99,4 @@ final class RepositoriesViewController: UIViewController {
         loadingView = nil
     }
 }
+

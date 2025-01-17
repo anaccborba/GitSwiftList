@@ -15,6 +15,7 @@ class DSProfileView: UIView {
     
     private lazy var stackView: UIStackView = {
         let stackView = UIStackView()
+        stackView.spacing = 8
         
         return stackView
     }()
