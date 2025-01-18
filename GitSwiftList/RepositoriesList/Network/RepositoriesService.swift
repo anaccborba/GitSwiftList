@@ -7,7 +7,7 @@
 
 import Alamofire
 
-final class RepositoriesService {
+class RepositoriesService {
     private let baseURL = "https://api.github.com/search/repositories"
     
     func fetchRepositories(page: Int, completion: @escaping (Result<[Repository], Error>) -> Void) {

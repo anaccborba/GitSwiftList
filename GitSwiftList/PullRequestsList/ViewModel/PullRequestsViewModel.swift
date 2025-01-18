@@ -9,18 +9,19 @@ import Foundation
 
 class PullRequestsViewModel {
     private let repository: Repository
-    private let service = PullRequestsService()
+    private let service: PullRequestsService
     private(set) var pullRequests: [PullRequest] = []
     var reloadPullRequests: (() -> Void)?
     var showErrorView: (() -> Void)?
     var showLoadingView: (() -> Void)?
     var hideLoadingView: (() -> Void)?
     
-    private var isLoading = false
+    var isLoading = false
     private var currentPage = 1
     
-    init(repository: Repository) {
+    init(repository: Repository, service: PullRequestsService = PullRequestsService()) {
         self.repository = repository
+        self.service = service
     }
     
     func fetchPullRequests() {

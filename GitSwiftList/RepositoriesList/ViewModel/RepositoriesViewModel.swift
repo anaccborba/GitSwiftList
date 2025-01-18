@@ -8,7 +8,7 @@
 import Foundation
 
 class RepositoriesViewModel {
-    private let service = RepositoriesService()
+    private let service: RepositoriesService
     private(set) var repositories: [Repository] = []
     var reloadRepositories: (() -> Void)?
     
@@ -16,8 +16,12 @@ class RepositoriesViewModel {
     var showLoadingView: (() -> Void)?
     var hideLoadingView: (() -> Void)?
     
-    private var isLoading = false
+    var isLoading = false
     private var currentPage = 1
+    
+    init(service: RepositoriesService = RepositoriesService()) {
+        self.service = service
+    }
     
     func fetchRepositories() {
         guard !isLoading else { return }
