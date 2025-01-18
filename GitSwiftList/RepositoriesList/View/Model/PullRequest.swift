@@ -5,12 +5,15 @@
 //  Created by Ana Carolina Camargo Borba on 17/01/25.
 //
 
+import Foundation
+
 struct PullRequest: Codable {
     let id: Int
     let title: String
     let url: String
     let user: User
     let body: String?
+    let date: String
     
     enum CodingKeys: String, CodingKey {
         case id
@@ -18,6 +21,7 @@ struct PullRequest: Codable {
         case url = "html_url"
         case user
         case body
+        case date = "created_at"
     }
 }
 

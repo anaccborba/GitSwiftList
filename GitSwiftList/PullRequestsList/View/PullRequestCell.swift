@@ -22,6 +22,15 @@ class PullRequestCell: UITableViewCell {
         return stackView
     }()
     
+    private lazy var dateLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        let fontSize: CGFloat = 14
+        label.font = UIFont.boldSystemFont(ofSize: fontSize)
+        
+        return label
+    }()
+    
     private lazy var authorView: DSProfileView = {
         let profileView = DSProfileView()
         profileView.translatesAutoresizingMaskIntoConstraints = false
@@ -52,12 +61,17 @@ class PullRequestCell: UITableViewCell {
         
         let information = DSInformation(title: pullRequest.title, description: pullRequest.body)
         informationsView.bindView(information: information)
+        
+        if let date = Date.convertTimestampString(pullRequest.date) {
+            dateLabel.text = date.dateFormattedBR()
+        }
     }
 }
 
 extension PullRequestCell: DSViewCodeProtocol {
     func setUpHierarchy() {
         addSubview(stackView)
+        stackView.addArrangedSubview(dateLabel)
         stackView.addArrangedSubview(informationsView)
         stackView.addArrangedSubview(authorView)
     }

@@ -87,22 +87,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "D95912E2-7147-4C90-9D71-872E0EDF5DD0"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "GitSwiftList/PullRequestsList/View/PullRequestsViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "61"
-            endingLineNumber = "61"
-            landmarkName = "configureViewModelActions()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "D495EF0E-8899-46DA-B2E0-0B9823E266AF"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
@@ -113,6 +97,68 @@
             startingLineNumber = "69"
             endingLineNumber = "69"
             landmarkName = "configureViewModelActions()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "E109CE0A-507D-491A-AE6B-6F1A5B540F77"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GitSwiftList/PullRequestsList/View/PullRequestCell.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "65"
+            endingLineNumber = "65"
+            landmarkName = "bindCell(pullRequest:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "E109CE0A-507D-491A-AE6B-6F1A5B540F77 - 4910626231e5d100"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "GitSwiftList.PullRequestCell.bindCell(pullRequest: GitSwiftList.PullRequest) -&gt; ()"
+                  moduleName = "GitSwiftList.debug.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/anacarolinacamargoborba/Documents/Projetos/GitSwiftList/GitSwiftList/PullRequestsList/View/PullRequestCell.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "65"
+                  endingLineNumber = "65">
+               </Location>
+               <Location
+                  uuid = "E109CE0A-507D-491A-AE6B-6F1A5B540F77 - 4910626231e5d100"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "GitSwiftList.PullRequestCell.bindCell(pullRequest: GitSwiftList.PullRequest) -&gt; ()"
+                  moduleName = "GitSwiftList.debug.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/anacarolinacamargoborba/Documents/Projetos/GitSwiftList/GitSwiftList/PullRequestsList/View/PullRequestCell.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "65"
+                  endingLineNumber = "65">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "1FFF4F1D-42CD-4116-AF2E-692C44B11D8A"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GitSwiftList/PullRequestsList/View/PullRequestCell.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "66"
+            endingLineNumber = "66"
+            landmarkName = "bindCell(pullRequest:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
