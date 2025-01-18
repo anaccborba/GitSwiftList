@@ -33,7 +33,7 @@ class DSInformationsView: UIView {
         let fontSize: CGFloat = 14
         label.font = UIFont.systemFont(ofSize: fontSize, weight: .light)
         label.textColor = .gray
-        label.numberOfLines = 4
+        label.numberOfLines = 2
         label.translatesAutoresizingMaskIntoConstraints = false
         
         return label

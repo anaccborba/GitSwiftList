@@ -12,6 +12,7 @@ class DSProfileView: UIView {
     private lazy var stackView: UIStackView = {
         let stackView = UIStackView()
         stackView.spacing = CGFloat.smallMargin
+        stackView.alignment = .center
         stackView.translatesAutoresizingMaskIntoConstraints = false
         
         return stackView
@@ -75,6 +76,7 @@ extension DSProfileView: DSViewCodeProtocol {
     func setUpConstrainsts() {
         stackView.snp.makeConstraints { (make) in
             make.edges.equalToSuperview()
+            make.width.greaterThanOrEqualTo(100)
         }
         
         avatarImageView.snp.makeConstraints { (make) in
