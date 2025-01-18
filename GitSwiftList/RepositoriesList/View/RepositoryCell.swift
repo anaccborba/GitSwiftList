@@ -56,6 +56,7 @@ class RepositoryCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setUpViewCode()
         self.backgroundColor = .clear
+        selectionStyle = .none
     }
     
     required init?(coder: NSCoder) {

@@ -24,9 +24,9 @@ class PullRequestsViewModel {
     }
     
     func fetchPullRequests() {
-        showLoadingView?()
         guard !isLoading else { return }
         isLoading = true
+        showLoadingView?()
         service.fetchPullRequests(owner: repository.owner.login, repository: repository.name, page: currentPage) { [weak self] result in
             DispatchQueue.main.async {
                 guard let self = self else { return }

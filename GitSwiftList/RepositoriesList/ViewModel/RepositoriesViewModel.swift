@@ -20,9 +20,9 @@ class RepositoriesViewModel {
     private var currentPage = 1
     
     func fetchRepositories() {
-        showLoadingView?()
         guard !isLoading else { return }
         isLoading = true
+        showLoadingView?()
         service.fetchRepositories(page: currentPage) { [weak self] result in
             DispatchQueue.main.async {
                 guard let self = self else { return }
