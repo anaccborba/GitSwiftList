@@ -75,6 +75,10 @@ final class PullRequestsViewController: UIViewController {
         typedView.pullRequestCellTap = { [weak self] pullRequest in
             self?.coordinator.didFinish(url: pullRequest.url)
         }
+        
+        typedView.reloadPullRequests = { [weak self] in
+            self?.viewModel.fetchPullRequests()
+        }
     }
     
     private func showError() {

@@ -45,6 +45,10 @@ final class RepositoriesViewController: UIViewController {
         typedView.repositoryCellTap = { [weak self] repository in
             self?.coordinator.didFinish(repository: repository)
         }
+        
+        typedView.reloadRepositories = { [weak self] in
+            self?.viewModel.fetchRepositories()
+        }
     }
     
     private func configureViewModelActions() {

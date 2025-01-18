@@ -12,6 +12,8 @@ final class RepositoriesView: UIView {
     
     private var repositories: [Repository] = []
     public var repositoryCellTap: ((Repository) -> Void)?
+    public var reloadRepositories: (() -> Void)?
+    
     
     private lazy var tableView: UITableView = {
         let tableView = UITableView()
@@ -67,6 +69,16 @@ extension RepositoriesView: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         repositoryCellTap?(repositories[indexPath.row])
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let contentSizeHeight = scrollView.contentSize.height
+        let contentOffset = scrollView.contentOffset.y
+        let frameSizeHeight = scrollView.frame.size.height
+        
+        if contentSizeHeight - contentOffset <= frameSizeHeight {
+            reloadRepositories?()
+        }
     }
 }
 

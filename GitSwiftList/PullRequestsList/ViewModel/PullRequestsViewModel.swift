@@ -14,21 +14,28 @@ class PullRequestsViewModel {
     var reloadPullRequests: (() -> Void)?
     var showErrorView: (() -> Void)?
     
+    private var isLoading = false
+    private var currentPage = 1
+    
     init(repository: Repository) {
         self.repository = repository
     }
     
     func fetchPullRequests() {
-        service.fetchPullRequests(owner: repository.owner.login, repository: repository.name, page: 0, perPage: 10) { [weak self] result in
+        guard !isLoading else { return }
+        isLoading = true
+        service.fetchPullRequests(owner: repository.owner.login, repository: repository.name, page: currentPage) { [weak self] result in
             DispatchQueue.main.async {
                 guard let self = self else { return }
+                self.isLoading = false
                 
                 switch result {
                 case .success(let pullRequests):
                     self.pullRequests.append(contentsOf: pullRequests)
+                    self.currentPage += 1
                     self.reloadPullRequests?()
                     
-                case .failure(let error):
+                case .failure(_):
                     self.showErrorView?()
                 }
             }

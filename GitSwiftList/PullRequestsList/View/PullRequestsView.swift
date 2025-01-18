@@ -12,6 +12,7 @@ final class PullRequestsView: UIView {
     
     private var pullRequests: [PullRequest] = []
     public var pullRequestCellTap: ((PullRequest) -> Void)?
+    public var reloadPullRequests: (() -> Void)?
     
     private lazy var tableView: UITableView = {
         let tableView = UITableView()
@@ -67,6 +68,16 @@ extension PullRequestsView: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         pullRequestCellTap?(pullRequests[indexPath.row])
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let contentSizeHeight = scrollView.contentSize.height
+        let contentOffset = scrollView.contentOffset.y
+        let frameSizeHeight = scrollView.frame.size.height
+        
+        if contentSizeHeight - contentOffset <= frameSizeHeight {
+            reloadPullRequests?()
+        }
     }
 }
 

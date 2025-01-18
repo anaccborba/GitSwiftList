@@ -13,17 +13,24 @@ class RepositoriesViewModel {
     var reloadRepositories: (() -> Void)?
     var showErrorView: (() -> Void)?
     
+    private var isLoading = false
+    private var currentPage = 1
+    
     func fetchRepositories() {
-        service.fetchRepositories(page: 0, perPage: 10) { [weak self] result in
+        guard !isLoading else { return }
+        isLoading = true
+        service.fetchRepositories(page: currentPage) { [weak self] result in
             DispatchQueue.main.async {
                 guard let self = self else { return }
+                self.isLoading = false
                 
                 switch result {
                 case .success(let repositories):
                     self.repositories.append(contentsOf: repositories)
+                    self.currentPage += 1
                     self.reloadRepositories?()
                     
-                case .failure(let error):
+                case .failure(let _):
                     self.showErrorView?()
                 }
             }
