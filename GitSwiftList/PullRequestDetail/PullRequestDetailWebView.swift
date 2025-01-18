@@ -9,10 +9,9 @@
 import UIKit
 import WebKit
 
-class PullRequestDetailWebView: UIViewController, WKNavigationDelegate {
+class PullRequestDetailWebView: BaseViewController, WKNavigationDelegate {
     var webView: WKWebView = WKWebView()
     var url: String
-    private var loadingView: DSLoadingView?
     
     init(url: String) {
         self.url = url
@@ -40,18 +39,6 @@ class PullRequestDetailWebView: UIViewController, WKNavigationDelegate {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         showLoading()
-    }
-    
-    private func showLoading() {
-        loadingView = DSLoadingView(frame: view.bounds)
-        if let loadingView = loadingView {
-            view.addSubview(loadingView)
-        }
-    }
-    
-    private func hideLoading() {
-        loadingView?.removeFromSuperview()
-        loadingView = nil
     }
     
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {

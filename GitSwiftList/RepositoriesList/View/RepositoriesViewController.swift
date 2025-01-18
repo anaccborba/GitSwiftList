@@ -8,13 +8,11 @@
 import Foundation
 import UIKit
 
-final class RepositoriesViewController: UIViewController {
+final class RepositoriesViewController: BaseViewController {
     
     private let coordinator: RepositoriesCoordinator
     private let typedView = RepositoriesView()
     private let viewModel = RepositoriesViewModel()
-    private let errorView = DSErrorView()
-    private var loadingView: DSLoadingView?
     
     override func loadView() {
         super.loadView()
@@ -54,7 +52,6 @@ final class RepositoriesViewController: UIViewController {
     private func configureViewModelActions() {
         viewModel.reloadRepositories = { [weak self] in
             DispatchQueue.main.async {
-                self?.hideLoading()
                 self?.hideError()
                 if let repositories = self?.viewModel.repositories {
                     self?.typedView.bindView(repositories: repositories)
@@ -64,8 +61,19 @@ final class RepositoriesViewController: UIViewController {
         
         viewModel.showErrorView = { [weak self] in
             DispatchQueue.main.async {
-                self?.hideLoading()
                 self?.showError()
+            }
+        }
+        
+        viewModel.showLoadingView = { [weak self] in
+            DispatchQueue.main.async {
+                self?.showLoading()
+            }
+        }
+        
+        viewModel.hideLoadingView = { [weak self] in
+            DispatchQueue.main.async {
+                self?.hideLoading()
             }
         }
     }
@@ -74,26 +82,5 @@ final class RepositoriesViewController: UIViewController {
         errorView.tryAgainTap = { [weak self] in
             self?.viewModel.fetchRepositories()
         }
-    }
-    
-    private func showError() {
-        errorView.frame = view.frame
-        view.addSubview(errorView)
-    }
-    
-    private func hideError() {
-        errorView.removeFromSuperview()
-    }
-    
-    private func showLoading() {
-        loadingView = DSLoadingView(frame: view.bounds)
-        if let loadingView = loadingView {
-            view.addSubview(loadingView)
-        }
-    }
-    
-    private func hideLoading() {
-        loadingView?.removeFromSuperview()
-        loadingView = nil
     }
 }

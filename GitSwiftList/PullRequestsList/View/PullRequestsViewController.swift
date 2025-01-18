@@ -8,14 +8,11 @@
 import Foundation
 import UIKit
 
-final class PullRequestsViewController: UIViewController {
+final class PullRequestsViewController: BaseViewController {
     
     private let typedView = PullRequestsView()
     private let viewModel: PullRequestsViewModel
     private let coordinator: PullRequestsCoordinator
-    
-    private let errorView = DSErrorView()
-    private var loadingView: DSLoadingView?
     
     override func loadView() {
         super.loadView()
@@ -63,6 +60,18 @@ final class PullRequestsViewController: UIViewController {
                 self?.showError()
             }
         }
+        
+        viewModel.showLoadingView = { [weak self] in
+            DispatchQueue.main.async {
+                self?.showLoading()
+            }
+        }
+        
+        viewModel.hideLoadingView = { [weak self] in
+            DispatchQueue.main.async {
+                self?.hideLoading()
+            }
+        }
     }
     
     private func configureErrorViewActions() {
@@ -79,28 +88,6 @@ final class PullRequestsViewController: UIViewController {
         typedView.reloadPullRequests = { [weak self] in
             self?.viewModel.fetchPullRequests()
         }
-    }
-    
-    private func showError() {
-        errorView.bounds = view.bounds
-        errorView.frame = view.frame
-        view.addSubview(errorView)
-    }
-    
-    private func hideError() {
-        errorView.removeFromSuperview()
-    }
-    
-    private func showLoading() {
-        loadingView = DSLoadingView(frame: view.bounds)
-        if let loadingView = loadingView {
-            view.addSubview(loadingView)
-        }
-    }
-    
-    private func hideLoading() {
-        loadingView?.removeFromSuperview()
-        loadingView = nil
     }
 }
 

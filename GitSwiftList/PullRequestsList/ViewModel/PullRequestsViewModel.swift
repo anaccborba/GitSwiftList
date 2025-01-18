@@ -13,6 +13,8 @@ class PullRequestsViewModel {
     private(set) var pullRequests: [PullRequest] = []
     var reloadPullRequests: (() -> Void)?
     var showErrorView: (() -> Void)?
+    var showLoadingView: (() -> Void)?
+    var hideLoadingView: (() -> Void)?
     
     private var isLoading = false
     private var currentPage = 1
@@ -22,12 +24,14 @@ class PullRequestsViewModel {
     }
     
     func fetchPullRequests() {
+        showLoadingView?()
         guard !isLoading else { return }
         isLoading = true
         service.fetchPullRequests(owner: repository.owner.login, repository: repository.name, page: currentPage) { [weak self] result in
             DispatchQueue.main.async {
                 guard let self = self else { return }
                 self.isLoading = false
+                self.hideLoadingView?()
                 
                 switch result {
                 case .success(let pullRequests):
