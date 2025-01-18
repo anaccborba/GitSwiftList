@@ -14,3 +14,9 @@
 
 //MARK: - RepositoryViewController
 "pullRequestsNavigationTitle"= "Pull Requests";
+
+// MARK: - DSErrorView
+"errorTitle" = "Ooops, algo deu errado";
+"errorDescription" = "Estamos passando por algumas instabilidades, tente novamente jajá";
+"tryAgainButtonTitle" = "Tentar novamente";
+

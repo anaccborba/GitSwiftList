@@ -9,17 +9,6 @@ import UIKit
 
 class DSErrorView: UIView {
     
-    private enum Constants {
-        static let iconSize = 70
-        static let marginSize = 30
-        static let tryAgainButtonWidth = 270
-        static let tryAgainButtonHeight = 60
-        
-        static let errorTitle = "Ooops, algo deu errado"
-        static let errorDescription = "Estamos passando por algumas instabilidades, tente novamente jajá"
-        static let tryAgainButtonTitle = "Tentar novamente"
-    }
-    
     var tryAgainTap: (() -> Void)?
     
     private lazy var stackView: UIStackView = {
@@ -45,7 +34,7 @@ class DSErrorView: UIView {
         let label = UILabel()
         let fontSize: CGFloat = 20
         label.font = UIFont.boldSystemFont(ofSize: fontSize)
-        label.text = Constants.errorTitle
+        label.text = NSLocalizedString("errorTitle", comment: "Localizable")
         label.translatesAutoresizingMaskIntoConstraints = false
         
         return label
@@ -58,7 +47,7 @@ class DSErrorView: UIView {
         label.textColor = .gray
         label.textAlignment = .center
         label.numberOfLines = 2
-        label.text = Constants.errorDescription
+        label.text = NSLocalizedString("errorDescription", comment: "Localizable")
         label.translatesAutoresizingMaskIntoConstraints = false
         
         return label
@@ -66,7 +55,7 @@ class DSErrorView: UIView {
     
     private lazy var tryAgainButton: DSPrimaryButtonView = {
         let button = DSPrimaryButtonView()
-        button.bindView(title: Constants.tryAgainButtonTitle)
+        button.bindView(title: NSLocalizedString("tryAgainButtonTitle", comment: "Localizable"))
         
         return button
     }()
@@ -101,13 +90,13 @@ extension DSErrorView: DSViewCodeProtocol {
     func setUpConstrainsts() {
         stackView.snp.makeConstraints { (make) in
             make.centerY.equalToSuperview()
-            make.leading.equalToSuperview().offset(Constants.marginSize)
-            make.trailing.equalToSuperview().offset(-Constants.marginSize)
-            make.height.equalTo(Constants.iconSize * 2)
+            make.leading.equalToSuperview().offset(CGFloat.largeMargin)
+            make.trailing.equalToSuperview().inset(CGFloat.largeMargin)
+            make.height.equalTo(70 * 2)
         }
         
         imageView.snp.makeConstraints { (make) in
-            make.height.width.equalTo(Constants.iconSize)
+            make.height.width.equalTo(70)
         }
         
         tryAgainButton.snp.makeConstraints { (make) in
