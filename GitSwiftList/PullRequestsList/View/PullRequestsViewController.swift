@@ -33,20 +33,16 @@ final class PullRequestsViewController: BaseViewController {
         super.viewDidLoad()
         self.title = NSLocalizedString("pullRequestsNavigationTitle", comment: "Localizable")
         
-        viewModel.fetchPullRequests()
         configureTypedViewActions()
         configureViewModelActions()
         configureErrorViewActions()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        showLoading()
+        
+        viewModel.fetchPullRequests()
     }
     
     private func configureViewModelActions() {
         viewModel.reloadPullRequests = { [weak self] in
             DispatchQueue.main.async {
-                self?.hideLoading()
                 self?.hideError()
                 if let pullRequests = self?.viewModel.pullRequests {
                     self?.typedView.bindView(pullRequests: pullRequests)
@@ -56,7 +52,6 @@ final class PullRequestsViewController: BaseViewController {
         
         viewModel.showErrorView = { [weak self] in
             DispatchQueue.main.async {
-                self?.hideLoading()
                 self?.showError()
             }
         }

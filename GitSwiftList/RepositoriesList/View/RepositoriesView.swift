@@ -14,10 +14,6 @@ final class RepositoriesView: UIView {
     public var repositoryCellTap: ((Repository) -> Void)?
     public var reloadRepositories: (() -> Void)?
     
-//    private lazy var emptyRepositoriesView: UIView = {
-//        leu view = UIView
-//    }()
-    
     private lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.backgroundColor = .lightGray

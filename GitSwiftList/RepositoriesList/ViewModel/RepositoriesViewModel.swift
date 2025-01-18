@@ -11,6 +11,7 @@ class RepositoriesViewModel {
     private let service = RepositoriesService()
     private(set) var repositories: [Repository] = []
     var reloadRepositories: (() -> Void)?
+    
     var showErrorView: (() -> Void)?
     var showLoadingView: (() -> Void)?
     var hideLoadingView: (() -> Void)?

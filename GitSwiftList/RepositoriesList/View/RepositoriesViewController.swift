@@ -33,10 +33,11 @@ final class RepositoriesViewController: BaseViewController {
         self.navigationItem.setHidesBackButton(true, animated: true)
         self.title = NSLocalizedString("repositoriesNavigationTitle", comment: "Localizable")
         
-        viewModel.fetchRepositories()
         configureTypedViewActions()
         configureViewModelActions()
         configureErrorViewActions()
+        
+        viewModel.fetchRepositories()
     }
     
     private func configureTypedViewActions() {
@@ -50,12 +51,16 @@ final class RepositoriesViewController: BaseViewController {
     }
     
     private func configureViewModelActions() {
-        viewModel.reloadRepositories = { [weak self] in
+        viewModel.showLoadingView = { [weak self] in
             DispatchQueue.main.async {
-                self?.hideError()
-                if let repositories = self?.viewModel.repositories {
-                    self?.typedView.bindView(repositories: repositories)
-                }
+                self?.showLoading()
+                self?.typedView.backgroundColor = .red
+            }
+        }
+        
+        viewModel.hideLoadingView = { [weak self] in
+            DispatchQueue.main.async {
+                self?.hideLoading()
             }
         }
         
@@ -65,15 +70,12 @@ final class RepositoriesViewController: BaseViewController {
             }
         }
         
-        viewModel.showLoadingView = { [weak self] in
+        viewModel.reloadRepositories = { [weak self] in
             DispatchQueue.main.async {
-                self?.showLoading()
-            }
-        }
-        
-        viewModel.hideLoadingView = { [weak self] in
-            DispatchQueue.main.async {
-                self?.hideLoading()
+                self?.hideError()
+                if let repositories = self?.viewModel.repositories {
+                    self?.typedView.bindView(repositories: repositories)
+                }
             }
         }
     }

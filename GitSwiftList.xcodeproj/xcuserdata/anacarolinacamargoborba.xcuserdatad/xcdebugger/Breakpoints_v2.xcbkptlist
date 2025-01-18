@@ -87,31 +87,15 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "A681B1A4-E24C-4340-91DE-400758084154"
+            uuid = "D95912E2-7147-4C90-9D71-872E0EDF5DD0"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "GitSwiftList/PullRequestsList/ViewModel/PullRequestsViewModel.swift"
+            filePath = "GitSwiftList/PullRequestsList/View/PullRequestsViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "30"
-            endingLineNumber = "30"
-            landmarkName = "fetchPullRequests()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "7A98AD16-CCBE-4041-889A-291DD7C2A5D3"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "GitSwiftList/RepositoriesList/View/RepositoriesViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "70"
-            endingLineNumber = "70"
+            startingLineNumber = "61"
+            endingLineNumber = "61"
             landmarkName = "configureViewModelActions()"
             landmarkType = "7">
          </BreakpointContent>
@@ -119,16 +103,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "8A44114E-26AD-46B3-A2BC-2585F31A1FD6"
+            uuid = "D495EF0E-8899-46DA-B2E0-0B9823E266AF"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "GitSwiftList/RepositoriesList/ViewModel/RepositoriesViewModel.swift"
+            filePath = "GitSwiftList/RepositoriesList/View/RepositoriesViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "22"
-            endingLineNumber = "22"
-            landmarkName = "fetchRepositories()"
+            startingLineNumber = "69"
+            endingLineNumber = "69"
+            landmarkName = "configureViewModelActions()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
