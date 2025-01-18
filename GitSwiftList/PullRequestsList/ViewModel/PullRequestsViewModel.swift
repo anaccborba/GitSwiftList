@@ -8,7 +8,7 @@
 import Foundation
 
 class PullRequestsViewModel {
-    private let repository: Repository
+    let repository: Repository
     private let service: PullRequestsService
     private(set) var pullRequests: [PullRequest] = []
     var reloadPullRequests: (() -> Void)?

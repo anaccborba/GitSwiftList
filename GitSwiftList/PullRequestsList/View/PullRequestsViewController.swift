@@ -11,8 +11,8 @@ import UIKit
 final class PullRequestsViewController: BaseViewController {
     
     private let typedView = PullRequestsView()
-    private let viewModel: PullRequestsViewModel
-    private let coordinator: PullRequestsCoordinator
+    let viewModel: PullRequestsViewModel
+    let coordinator: PullRequestsCoordinator
     
     override func loadView() {
         super.loadView()

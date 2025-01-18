@@ -10,7 +10,7 @@ import UIKit
 
 final class RepositoriesViewController: BaseViewController {
     
-    private let coordinator: RepositoriesCoordinator
+    let coordinator: RepositoriesCoordinator
     private let typedView = RepositoriesView()
     private let viewModel = RepositoriesViewModel()
     
