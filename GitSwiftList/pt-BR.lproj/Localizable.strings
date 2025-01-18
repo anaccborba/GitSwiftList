@@ -15,6 +15,9 @@
 //MARK: - RepositoryViewController
 "pullRequestsNavigationTitle"= "Pull Requests";
 
+// MARK: - PullRequestsView
+"emptyPullRequests" = "Esse repositório não possui nenhum Pull Request aberto";
+
 // MARK: - DSErrorView
 "errorTitle" = "Ooops, algo deu errado";
 "errorDescription" = "Estamos passando por algumas instabilidades, tente novamente jajá";

@@ -14,6 +14,20 @@ final class PullRequestsView: UIView {
     public var pullRequestCellTap: ((PullRequest) -> Void)?
     public var reloadPullRequests: (() -> Void)?
     
+    private lazy var emptyPullRequestsLabel: UILabel = {
+        let label = UILabel()
+        let fontSize: CGFloat = 24
+        label.font = UIFont.systemFont(ofSize: fontSize, weight: .light)
+        label.text = NSLocalizedString("emptyPullRequests", comment: "Localizable")
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.numberOfLines = 0
+        label.textAlignment = .center
+        label.textColor = .lightBlue
+        label.isHidden = true
+        
+        return label
+    }()
+    
     private lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.backgroundColor = .lightGray
@@ -40,16 +54,27 @@ final class PullRequestsView: UIView {
         self.pullRequests = pullRequests
         tableView.reloadData()
     }
+    
+    public func showEmptyState() {
+        emptyPullRequestsLabel.isHidden = false
+    }
 }
 
 extension PullRequestsView: DSViewCodeProtocol {
     func setUpHierarchy() {
         addSubview(tableView)
+        addSubview(emptyPullRequestsLabel)
     }
     
     func setUpConstrainsts() {
         tableView.snp.makeConstraints { (make) in
             make.edges.equalToSuperview()
+        }
+        
+        emptyPullRequestsLabel.snp.makeConstraints { (make) in
+            make.centerY.centerX.equalToSuperview()
+            make.leading.equalToSuperview().offset(CGFloat.largeMargin)
+            make.trailing.equalToSuperview().inset(CGFloat.largeMargin)
         }
     }
 }

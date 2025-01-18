@@ -45,7 +45,11 @@ final class PullRequestsViewController: BaseViewController {
             DispatchQueue.main.async {
                 self?.hideError()
                 if let pullRequests = self?.viewModel.pullRequests {
-                    self?.typedView.bindView(pullRequests: pullRequests)
+                    if pullRequests.isEmpty {
+                        self?.typedView.showEmptyState()
+                    } else {
+                        self?.typedView.bindView(pullRequests: pullRequests)
+                    }
                 }
             }
         }
