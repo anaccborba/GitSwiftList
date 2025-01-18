@@ -14,16 +14,16 @@ class DSLoadingView: UIView {
     private enum Constants {
         static let screenWidth = UIScreen.main.bounds.size.width
         static let screenHeight = UIScreen.main.bounds.size.height
-        static let animationSize = 100
-        static let animationFrameX = Int(screenWidth)/2 - animationSize/2
-        static let animationFrameY = Int(screenHeight)/2 - animationSize/2
+    
+        static let animationFrameX = (screenWidth - CGFloat.defaultAnimationSize)/2
+        static let animationFrameY = (screenHeight - CGFloat.defaultAnimationSize)/2
 
     }
     
     private lazy var animationView: LottieAnimationView = {
         let lottieAnimationView: LottieAnimationView
         lottieAnimationView = .init(name: "LoadingAnimation")
-        lottieAnimationView.frame = CGRect(x: Constants.animationFrameX  , y: Constants.animationFrameY , width: Constants.animationSize, height: Constants.animationSize)
+        lottieAnimationView.frame = CGRect(x: Constants.animationFrameX, y: Constants.animationFrameY, width: CGFloat.defaultAnimationSize, height: CGFloat.defaultAnimationSize)
         lottieAnimationView.animationSpeed = 1
         lottieAnimationView.loopMode = .loop
         lottieAnimationView.translatesAutoresizingMaskIntoConstraints = false
@@ -53,7 +53,7 @@ extension DSLoadingView: DSViewCodeProtocol {
         animationView.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.centerY.equalToSuperview()
-            make.height.width.equalTo(Constants.animationSize)
+            make.height.width.equalTo(CGFloat.defaultAnimationSize)
         }
     }
 }

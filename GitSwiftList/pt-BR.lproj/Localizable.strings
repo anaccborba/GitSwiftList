@@ -1,0 +1,16 @@
+//
+//  Localizable.strings
+//  GitSwiftList
+//
+//  Created by Ana Carolina Camargo Borba on 17/01/25.
+//
+
+// MARK: - SplashView
+"splashTitle" = "Git Swift List";
+"splashDescription" = "Seus repositórios Swift em um tap";
+
+//MARK: - RepositoryViewController
+"repositoriesNavigationTitle"= "Repositórios Swift";
+
+//MARK: - RepositoryViewController
+"pullRequestsNavigationTitle"= "Pull Requests";

@@ -34,7 +34,7 @@ final class PullRequestsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "Pull Requests"
+        self.title = NSLocalizedString("pullRequestsNavigationTitle", comment: "Localizable")
         
         viewModel.fetchPullRequests()
         configureTypedViewActions()

@@ -13,18 +13,22 @@ class RepositoryInteractionsView: UIView {
         let stackView = UIStackView()
         stackView.alignment = .leading
         stackView.axis = .horizontal
-        stackView.spacing = 8
+        stackView.spacing = CGFloat.smallMargin
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        
         return stackView
     }()
     
     private lazy var forkIconItemView: DSIconItemView = {
         let iconItemView = DSIconItemView()
+        iconItemView.translatesAutoresizingMaskIntoConstraints = false
         
         return iconItemView
     }()
     
     private lazy var starsIconItemView: DSIconItemView = {
         let iconItemView = DSIconItemView()
+        iconItemView.translatesAutoresizingMaskIntoConstraints = false
         
         return iconItemView
     }()

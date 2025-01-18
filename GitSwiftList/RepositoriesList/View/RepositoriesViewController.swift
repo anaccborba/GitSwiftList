@@ -13,7 +13,6 @@ final class RepositoriesViewController: UIViewController {
     private let coordinator: RepositoriesCoordinator
     private let typedView = RepositoriesView()
     private let viewModel = RepositoriesViewModel()
-    
     private let errorView = DSErrorView()
     private var loadingView: DSLoadingView?
     
@@ -34,17 +33,18 @@ final class RepositoriesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.setHidesBackButton(true, animated: true)
-        self.title = "Repositórios Swift"
+        self.title = NSLocalizedString("repositoriesNavigationTitle", comment: "Localizable")
         
-        showLoading()
         viewModel.fetchRepositories()
         configureTypedViewActions()
         configureViewModelActions()
         configureErrorViewActions()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-//        showLoading()
+    private func configureTypedViewActions() {
+        typedView.repositoryCellTap = { [weak self] repository in
+            self?.coordinator.didFinish(repository: repository)
+        }
     }
     
     private func configureViewModelActions() {
@@ -72,14 +72,7 @@ final class RepositoriesViewController: UIViewController {
         }
     }
     
-    private func configureTypedViewActions() {
-        typedView.repositoryCellTap = { [weak self] repository in
-            self?.coordinator.didFinish(repository: repository)
-        }
-    }
-    
     private func showError() {
-        errorView.bounds = view.bounds
         errorView.frame = view.frame
         view.addSubview(errorView)
     }

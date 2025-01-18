@@ -13,7 +13,8 @@ class DSInformationsView: UIView {
         let stackView = UIStackView()
         stackView.alignment = .leading
         stackView.axis = .vertical
-        stackView.spacing = 8
+        stackView.spacing = CGFloat.smallMargin
+        stackView.translatesAutoresizingMaskIntoConstraints = false
         
         return stackView
     }()
@@ -22,6 +23,7 @@ class DSInformationsView: UIView {
         let label = UILabel()
         let fontSize: CGFloat = 16
         label.font = UIFont.systemFont(ofSize: fontSize, weight: .heavy)
+        label.translatesAutoresizingMaskIntoConstraints = false
         
         return label
     }()
@@ -32,6 +34,7 @@ class DSInformationsView: UIView {
         label.font = UIFont.systemFont(ofSize: fontSize, weight: .light)
         label.textColor = .gray
         label.numberOfLines = 4
+        label.translatesAutoresizingMaskIntoConstraints = false
         
         return label
     }()

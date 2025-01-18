@@ -14,20 +14,15 @@ final class SplashView: UIView {
     private enum Constants {
         static let screenWidth = UIScreen.main.bounds.size.width
         static let screenHeight = UIScreen.main.bounds.size.height
-        static let animationSize = 160
-        static let animationFrameX = Int(screenWidth)/2 - animationSize/2
-        static let animationFrameY = Int(screenHeight)/2 - animationSize/2
-        
-        static let spacing = 8
-        
-        static let splashTitle = "Git Swift List"
-        static let splashDescription = "Seus repositórios Swift em um tap"
+
+        static let animationFrameX = (screenWidth - CGFloat.defaultAnimationSize)/2
+        static let animationFrameY = (screenHeight - CGFloat.defaultAnimationSize)/2
     }
     
     private lazy var animationView: LottieAnimationView = {
         let lottieAnimationView: LottieAnimationView
         lottieAnimationView = .init(name: "SplashAnimation")
-        lottieAnimationView.frame = CGRect(x: Constants.animationFrameX  , y: Constants.animationFrameY , width: Constants.animationSize, height: Constants.animationSize)
+        lottieAnimationView.frame = CGRect(x: Constants.animationFrameX, y: Constants.animationFrameY, width: CGFloat.defaultAnimationSize, height: CGFloat.defaultAnimationSize)
         lottieAnimationView.animationSpeed = 2.5
         lottieAnimationView.loopMode = .loop
         lottieAnimationView.translatesAutoresizingMaskIntoConstraints = false
@@ -37,7 +32,7 @@ final class SplashView: UIView {
     
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
-        label.text = Constants.splashTitle
+        label.text = NSLocalizedString("splashTitle", comment: "Localizable")
         let fontSize: CGFloat = 20
         label.font = UIFont.systemFont(ofSize: fontSize, weight: .heavy)
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -47,7 +42,7 @@ final class SplashView: UIView {
     
     private lazy var descriptionLabel: UILabel = {
         let label = UILabel()
-        label.text = Constants.splashDescription
+        label.text = NSLocalizedString("splashDescription", comment: "Localizable")
         let fontSize: CGFloat = 16
         label.font = UIFont.systemFont(ofSize: fontSize, weight: .light)
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -78,16 +73,16 @@ extension SplashView: DSViewCodeProtocol {
         animationView.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.centerY.equalToSuperview()
-            make.height.width.equalTo(Constants.animationSize)
+            make.height.width.equalTo(CGFloat.defaultAnimationSize)
         }
         
         titleLabel.snp.makeConstraints { make in
-            make.top.equalTo(animationView.snp.bottom).offset(Constants.spacing)
+            make.top.equalTo(animationView.snp.bottom).offset(CGFloat.smallMargin)
             make.centerX.equalToSuperview()
         }
         
         descriptionLabel.snp.makeConstraints { make in
-            make.top.equalTo(titleLabel.snp.bottom).offset(Constants.spacing)
+            make.top.equalTo(titleLabel.snp.bottom).offset(CGFloat.smallMargin)
             make.centerX.equalToSuperview()
         }
     }

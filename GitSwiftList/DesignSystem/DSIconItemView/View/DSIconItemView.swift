@@ -13,12 +13,14 @@ class DSIconItemView: UIView {
         let stackView = UIStackView()
         stackView.alignment = .leading
         stackView.axis = .horizontal
+        stackView.translatesAutoresizingMaskIntoConstraints = false
         
         return stackView
     }()
     
     private lazy var iconImageView: UIImageView = {
         let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
 
         return imageView
     }()
@@ -27,6 +29,7 @@ class DSIconItemView: UIView {
         let label = UILabel()
         let fontSize: CGFloat = 14
         label.font = UIFont.boldSystemFont(ofSize: fontSize)
+        label.translatesAutoresizingMaskIntoConstraints = false
         
         return label
     }()
@@ -61,7 +64,7 @@ extension DSIconItemView: DSViewCodeProtocol {
         }
         
         iconImageView.snp.makeConstraints { (make) in
-            make.height.width.equalTo(16)
+            make.height.width.equalTo(CGFloat.mediumMargin)
         }
     }
 }

@@ -17,6 +17,7 @@ final class RepositoriesView: UIView {
         let tableView = UITableView()
         tableView.backgroundColor = .lightGray
         tableView.separatorStyle = .none
+        tableView.translatesAutoresizingMaskIntoConstraints = false
         
         tableView.delegate = self
         tableView.dataSource = self
@@ -60,7 +61,7 @@ extension RepositoriesView: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         guard let cell = tableView.dequeueReusableCell(withIdentifier:NSStringFromClass(RepositoryCell.self), for: indexPath) as? RepositoryCell else { return UITableViewCell() }
-        cell.setUpCell(repository: repositories[indexPath.row])
+        cell.bindCell(repository: repositories[indexPath.row])
         return cell
     }
     

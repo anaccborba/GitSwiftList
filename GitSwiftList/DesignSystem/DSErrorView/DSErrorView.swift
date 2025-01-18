@@ -26,6 +26,7 @@ class DSErrorView: UIView {
         let stackView = UIStackView()
         stackView.alignment = .center
         stackView.axis = .vertical
+        stackView.translatesAutoresizingMaskIntoConstraints = false
         
         return stackView
     }()
@@ -35,6 +36,7 @@ class DSErrorView: UIView {
         if let placeholderImage = UIImage(named: "WarningIcon") {
             imageView.image = placeholderImage
         }
+        imageView.translatesAutoresizingMaskIntoConstraints = false
         
         return imageView
     }()
@@ -44,6 +46,7 @@ class DSErrorView: UIView {
         let fontSize: CGFloat = 20
         label.font = UIFont.boldSystemFont(ofSize: fontSize)
         label.text = Constants.errorTitle
+        label.translatesAutoresizingMaskIntoConstraints = false
         
         return label
     }()
@@ -56,20 +59,14 @@ class DSErrorView: UIView {
         label.textAlignment = .center
         label.numberOfLines = 2
         label.text = Constants.errorDescription
+        label.translatesAutoresizingMaskIntoConstraints = false
         
         return label
     }()
     
-    let tryAgainButton: UIButton = {
-        let button = UIButton()
-        button.backgroundColor = .lightBlue
-        button.layer.cornerRadius = CGFloat(Constants.tryAgainButtonHeight/2)
-        button.setTitleColor(.white, for: .normal)
-        let fontSize: CGFloat = 16
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: fontSize)
-        button.setTitle(Constants.tryAgainButtonTitle, for: .normal)
-        
-        button.addTarget(self, action: #selector(tryAgainTapped), for: .touchUpInside)
+    private lazy var tryAgainButton: DSPrimaryButtonView = {
+        let button = DSPrimaryButtonView()
+        button.bindView(title: Constants.tryAgainButtonTitle)
         
         return button
     }()
@@ -77,6 +74,7 @@ class DSErrorView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         setUpViewCode()
+        configurePrymaryButtonAction()
         backgroundColor = .white
     }
     
@@ -84,8 +82,10 @@ class DSErrorView: UIView {
         nil
     }
     
-    @objc private func tryAgainTapped() {
-        tryAgainTap?()
+    private func configurePrymaryButtonAction() {
+        tryAgainButton.buttonTap = { [weak self] in
+            self?.tryAgainTap?()
+        }
     }
 }
 
@@ -111,9 +111,7 @@ extension DSErrorView: DSViewCodeProtocol {
         }
         
         tryAgainButton.snp.makeConstraints { (make) in
-            make.height.equalTo(60)
-            make.width.equalTo(278)
-            make.bottom.equalToSuperview().offset(-80)
+            make.bottom.equalToSuperview().inset(80)
             make.centerX.equalToSuperview()
         }
     }

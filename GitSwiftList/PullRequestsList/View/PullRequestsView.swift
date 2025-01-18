@@ -17,6 +17,7 @@ final class PullRequestsView: UIView {
         let tableView = UITableView()
         tableView.backgroundColor = .lightGray
         tableView.separatorStyle = .none
+        tableView.translatesAutoresizingMaskIntoConstraints = false
         
         tableView.delegate = self
         tableView.dataSource = self
@@ -60,7 +61,7 @@ extension PullRequestsView: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         guard let cell = tableView.dequeueReusableCell(withIdentifier:NSStringFromClass(PullRequestCell.self), for: indexPath) as? PullRequestCell else { return UITableViewCell() }
-        cell.setUpCell(pullRequest: pullRequests[indexPath.row])
+        cell.bindCell(pullRequest: pullRequests[indexPath.row])
         return cell
     }
     

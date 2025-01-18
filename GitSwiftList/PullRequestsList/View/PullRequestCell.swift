@@ -13,23 +13,25 @@ class PullRequestCell: UITableViewCell {
         let stackView = UIStackView()
         stackView.alignment = .leading
         stackView.axis = .vertical
-        stackView.spacing = 8
+        stackView.spacing = CGFloat.smallMargin
         stackView.backgroundColor = .white
-        stackView.layoutMargins = UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)
+        stackView.layoutMargins = UIEdgeInsets(top: CGFloat.mediumMargin, left: CGFloat.mediumMargin, bottom: CGFloat.mediumMargin, right: CGFloat.mediumMargin)
         stackView.isLayoutMarginsRelativeArrangement = true
-        stackView.layer.cornerRadius = 20
+        stackView.layer.cornerRadius = CGFloat.defaultStackViewCornerRadius
         
         return stackView
     }()
     
     private lazy var authorView: DSProfileView = {
         let profileView = DSProfileView()
+        profileView.translatesAutoresizingMaskIntoConstraints = false
         
         return profileView
     }()
     
     private lazy var informationsView: DSInformationsView = {
         let informationsView = DSInformationsView()
+        informationsView.translatesAutoresizingMaskIntoConstraints = false
         
         return informationsView
     }()
@@ -44,7 +46,7 @@ class PullRequestCell: UITableViewCell {
         nil
     }
     
-    public func setUpCell(pullRequest: PullRequest) {
+    public func bindCell(pullRequest: PullRequest) {
         let profile = DSProfile(avatarUrl: pullRequest.user.avatarUrl, username: pullRequest.user.login, axis: .horizontal)
         authorView.bindView(profile)
         
@@ -62,10 +64,10 @@ extension PullRequestCell: DSViewCodeProtocol {
     
     func setUpConstrainsts() {
         stackView.snp.makeConstraints { (make) in
-            make.top.equalToSuperview().offset(8)
-            make.leading.equalToSuperview().offset(16)
-            make.trailing.equalToSuperview().offset(-16)
-            make.bottom.equalToSuperview().offset(-8)
+            make.top.equalToSuperview().offset(CGFloat.smallMargin)
+            make.leading.equalToSuperview().offset(CGFloat.mediumMargin)
+            make.trailing.equalToSuperview().inset(CGFloat.mediumMargin)
+            make.bottom.equalToSuperview().inset(CGFloat.smallMargin)
         }
     }
 }

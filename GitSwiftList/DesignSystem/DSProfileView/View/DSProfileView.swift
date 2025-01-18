@@ -8,23 +8,21 @@
 import UIKit
 
 class DSProfileView: UIView {
-    
-    private enum Constants {
-        static let avatarSize = 50
-    }
-    
+
     private lazy var stackView: UIStackView = {
         let stackView = UIStackView()
-        stackView.spacing = 8
+        stackView.spacing = CGFloat.smallMargin
+        stackView.translatesAutoresizingMaskIntoConstraints = false
         
         return stackView
     }()
     
     private lazy var avatarImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.layer.cornerRadius = CGFloat(Constants.avatarSize/2)
+        imageView.layer.cornerRadius = CGFloat.defaultImageSize/2
         imageView.layer.masksToBounds = true
         imageView.contentMode = .scaleToFill
+        imageView.translatesAutoresizingMaskIntoConstraints = false
         if let placeholderImage = UIImage(named: "ProfileIcon") {
             imageView.image = placeholderImage
         }
@@ -36,6 +34,7 @@ class DSProfileView: UIView {
         let label = UILabel()
         let fontSize: CGFloat = 14
         label.font = UIFont.boldSystemFont(ofSize: fontSize)
+        label.translatesAutoresizingMaskIntoConstraints = false
         
         return label
     }()
@@ -79,7 +78,7 @@ extension DSProfileView: DSViewCodeProtocol {
         }
         
         avatarImageView.snp.makeConstraints { (make) in
-            make.height.width.equalTo(Constants.avatarSize)
+            make.height.width.equalTo(CGFloat.defaultImageSize)
         }
     }
 }
